@@ -36,25 +36,25 @@ function astra_logo_svg_icons_dynamic_css( $dynamic_css ) {
 	 * Start: Desktop related styles
 	 */
 	$desktop_css_output = array(
-		'header .ast-logo-svg-icon'           => array(
+		'.site-branding .ast-logo-svg-icon'           => array(
 			'display' => 'inline-flex', // Fix for the vertical alignment issue with the SVG logo.
 		),
-		'header .ast-logo-svg-icon svg'       => array(
+		'.site-branding .ast-logo-svg-icon svg'       => array(
 			'width' => astra_get_css_value( $header_logo_width['desktop'], 'px', '30' ),
 			'fill'  => esc_attr( $logo_svg_icon_color ),
 		),
-		'header .ast-logo-svg-icon:hover svg' => array(
+		'.site-branding .ast-logo-svg-icon:hover svg' => array(
 			'fill' => esc_attr( $logo_svg_icon_hover_color ),
 		),
 	);
 
 	if ( isset( $logo_svg_site_title_gap['desktop'] ) ) {
 		if ( $enabled_logo_title_inline ) {
-			$desktop_css_output[ '.ast-logo-title-inline .ast-site-identity' ] = array(
+			$desktop_css_output['.ast-logo-title-inline .ast-site-identity'] = array(
 				'gap' => astra_get_css_value( $logo_svg_site_title_gap['desktop'], 'px' ),
 			);
 		} else {
-			$desktop_css_output[ '.ast-site-identity .ast-logo-svg-icon' ] = array(
+			$desktop_css_output['.ast-site-identity .ast-logo-svg-icon'] = array(
 				'margin-bottom' => astra_get_css_value( $logo_svg_site_title_gap['desktop'], 'px' ),
 			);
 		}
@@ -68,18 +68,18 @@ function astra_logo_svg_icons_dynamic_css( $dynamic_css ) {
 	 * Start: Tablet related styles
 	 */
 	$tablet_css_output = array(
-		'header .ast-logo-svg-icon svg' => array(
+		'.site-branding .ast-logo-svg-icon svg' => array(
 			'width' => astra_get_css_value( $header_logo_width['tablet'], 'px', '30' ),
 		),
 	);
 
 	if ( isset( $logo_svg_site_title_gap['tablet'] ) ) {
 		if ( $enabled_logo_title_inline ) {
-			$tablet_css_output[ '.ast-logo-title-inline .ast-site-identity' ] = array(
+			$tablet_css_output['.ast-logo-title-inline .ast-site-identity'] = array(
 				'gap' => astra_get_css_value( $logo_svg_site_title_gap['tablet'], 'px' ),
 			);
 		} else {
-			$tablet_css_output[ '.ast-site-identity .ast-logo-svg-icon' ] = array(
+			$tablet_css_output['.ast-site-identity .ast-logo-svg-icon'] = array(
 				'margin-bottom' => astra_get_css_value( $logo_svg_site_title_gap['tablet'], 'px' ),
 			);
 		}
@@ -92,18 +92,18 @@ function astra_logo_svg_icons_dynamic_css( $dynamic_css ) {
 	 * Start: Mobile related styles
 	 */
 	$mobile_css_output = array(
-		'header .ast-logo-svg-icon svg' => array(
+		'.site-branding .ast-logo-svg-icon svg' => array(
 			'width' => astra_get_css_value( $header_logo_width['mobile'], 'px', '30' ),
 		),
 	);
 
 	if ( isset( $logo_svg_site_title_gap['mobile'] ) ) {
 		if ( $enabled_logo_title_inline ) {
-			$mobile_css_output[ '.ast-logo-title-inline .ast-site-identity' ] = array(
+			$mobile_css_output['.ast-logo-title-inline .ast-site-identity'] = array(
 				'gap' => astra_get_css_value( $logo_svg_site_title_gap['mobile'], 'px' ),
 			);
 		} else {
-			$mobile_css_output[ '.ast-site-identity .ast-logo-svg-icon' ] = array(
+			$mobile_css_output['.ast-site-identity .ast-logo-svg-icon'] = array(
 				'margin-bottom' => astra_get_css_value( $logo_svg_site_title_gap['mobile'], 'px' ),
 			);
 		}
@@ -117,5 +117,4 @@ function astra_logo_svg_icons_dynamic_css( $dynamic_css ) {
 	$dynamic_css .= astra_parse_css( $mobile_css_output, '', astra_get_mobile_breakpoint() );
 
 	return $dynamic_css;
-
 }

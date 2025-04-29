@@ -3,8 +3,6 @@
  * Register customizer panels & sections for SureCart CPT.
  *
  * @package     Astra
- * @author      Astra
- * @copyright   Copyright (c) 2024, Astra
  * @link        https://wpastra.com/
  * @since       Astra 4.6.13
  * @since       4.6.9 Changed to using Astra_Customizer API
@@ -20,7 +18,6 @@ if ( ! class_exists( 'Astra_Customizer_Register_Surecart_Section' ) ) {
 	 * Register SureCart CPT Customizer Configurations.
 	 */
 	class Astra_Customizer_Register_Surecart_Section extends Astra_Customizer_Config_Base {
-
 		/**
 		 * Register Panels and Sections for Customizer.
 		 *
@@ -30,12 +27,12 @@ if ( ! class_exists( 'Astra_Customizer_Register_Surecart_Section' ) ) {
 		 * @return Array Astra Customizer Configurations with updated configurations.
 		 */
 		public function register_configuration( $configurations, $wp_customize ) {
-		
+
 				$_configs = array(
 					array(
 						'name'     => 'ast-surecart',
-						'type'     => 'panel',
-						'priority' => 69,
+						'type'     => 'section',
+						'priority' => 68,
 						'title'    => __( 'SureCart', 'astra' ),
 					),
 				);
@@ -44,29 +41,27 @@ if ( ! class_exists( 'Astra_Customizer_Register_Surecart_Section' ) ) {
 					'sc_product'    => array(
 						'name'     => 'section-posttype-sc_product',
 						'type'     => 'section',
-						'panel'    => 'ast-surecart',
+						'section'  => 'ast-surecart',
 						'title'    => __( 'Products', 'astra' ),
-						'priority' => 68,
+						'priority' => 69,
 					),
 					'sc_collection' => array(
 						'name'     => 'section-posttype-sc_collection',
 						'type'     => 'section',
-						'panel'    => 'ast-surecart',
-						'title'    => __( 'Collection', 'astra' ),
-						'priority' => 68,
+						'section'  => 'ast-surecart',
+						'title'    => __( 'Collections', 'astra' ),
+						'priority' => 70,
 					),
 					'sc_upsell'     => array(
 						'name'     => 'section-posttype-sc_upsell',
 						'type'     => 'section',
-						'panel'    => 'ast-surecart',
-						'title'    => __( 'Upsell', 'astra' ),
-						'priority' => 68,
+						'section'  => 'ast-surecart',
+						'title'    => __( 'Upsells', 'astra' ),
+						'priority' => 71,
 					),
 				);
 
-				$configurations = array_merge( $configurations, $_configs, array_values( $surecart_post_types ) );
-
-				return $configurations;
+				return array_merge( $configurations, $_configs, array_values( $surecart_post_types ) );
 		}
 	}
 }

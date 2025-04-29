@@ -2,9 +2,7 @@
 /**
  * Header Builder Configuration.
  *
- * @author      Astra
  * @package     Astra
- * @copyright   Copyright (c) 2023, Astra
  * @link        https://wpastra.com/
  * @since       4.5.2
  */
@@ -36,8 +34,8 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 		}
 
 		$item = array(
-			'name'    => ( 1 === Astra_Builder_Helper::$num_of_header_button ) ? 'Button' : 'Button ' . $index,
-			'icon'    => 'admin-links',
+			'name'    => 1 === Astra_Builder_Helper::$num_of_header_button ? 'Button' : 'Button ' . $index,
+			'icon'    => 'button',
 			'section' => $header_button_section,
 			'clone'   => defined( 'ASTRA_EXT_VER' ),
 			'type'    => 'button',
@@ -59,8 +57,8 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 		}
 
 		$item = array(
-			'name'    => ( 1 === Astra_Builder_Helper::$num_of_header_html ) ? 'HTML' : 'HTML ' . $index,
-			'icon'    => 'text',
+			'name'    => 1 === Astra_Builder_Helper::$num_of_header_html ? 'HTML' : 'HTML ' . $index,
+			'icon'    => 'editor-code',
 			'section' => $header_html_section,
 			'clone'   => defined( 'ASTRA_EXT_VER' ),
 			'type'    => 'html',
@@ -82,8 +80,8 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 		}
 
 		$item = array(
-			'name'    => ( 1 === Astra_Builder_Helper::$num_of_header_widgets ) ? 'Widget' : 'Widget ' . $index,
-			'icon'    => 'wordpress',
+			'name'    => 1 === Astra_Builder_Helper::$num_of_header_widgets ? 'Widget' : 'Widget ' . $index,
+			'icon'    => 'screenoptions',
 			'section' => $header_widget_section,
 			'clone'   => defined( 'ASTRA_EXT_VER' ),
 			'type'    => 'widget',
@@ -146,7 +144,7 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 		}
 
 		$item = array(
-			'name'    => ( 1 === Astra_Builder_Helper::$num_of_header_social_icons ) ? 'Social' : 'Social ' . $index,
+			'name'    => 1 === Astra_Builder_Helper::$num_of_header_social_icons ? 'Social' : 'Social ' . $index,
 			'icon'    => 'share',
 			'section' => $header_social_section,
 			'clone'   => defined( 'ASTRA_EXT_VER' ),
@@ -219,7 +217,7 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 			'priority'    => 40,
 			'description' => '',
 			'context'     => array(),
-			'divider'     => ( astra_showcase_upgrade_notices() ) ? array() : array( 'ast_class' => 'ast-pro-available' ),
+			'divider'     => astra_showcase_upgrade_notices() ? array() : array( 'ast_class' => 'ast-pro-available' ),
 		),
 
 		/**
@@ -529,33 +527,27 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 			'transport'   => 'refresh',
 			'input_attrs' => array(
 				'group'  => ASTRA_THEME_SETTINGS . '[header-mobile-items]',
-				'rows'   =>
-					array( 'popup', 'above', 'primary', 'below' ),
-				'zones'  =>
-					array(
-						'popup'   =>
-							array(
-								'popup_content' => 'Popup Content',
-							),
-						'above'   =>
-							array(
-								'above_left'   => 'Top - Left',
-								'above_center' => 'Top - Center',
-								'above_right'  => 'Top - Right',
-							),
-						'primary' =>
-							array(
-								'primary_left'   => 'Main - Left',
-								'primary_center' => 'Main - Center',
-								'primary_right'  => 'Main - Right',
-							),
-						'below'   =>
-							array(
-								'below_left'   => 'Bottom - Left',
-								'below_center' => 'Bottom - Center',
-								'below_right'  => 'Bottom - Right',
-							),
+				'rows'   => array( 'popup', 'above', 'primary', 'below' ),
+				'zones'  => array(
+					'popup'   => array(
+						'popup_content' => 'Popup Content',
 					),
+					'above'   => array(
+						'above_left'   => 'Top - Left',
+						'above_center' => 'Top - Center',
+						'above_right'  => 'Top - Right',
+					),
+					'primary' => array(
+						'primary_left'   => 'Main - Left',
+						'primary_center' => 'Main - Center',
+						'primary_right'  => 'Main - Right',
+					),
+					'below'   => array(
+						'below_left'   => 'Bottom - Left',
+						'below_center' => 'Bottom - Center',
+						'below_right'  => 'Bottom - Right',
+					),
+				),
 				'status' => array(
 					'above'   => true,
 					'primary' => true,
@@ -703,6 +695,7 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 			'name'     => ASTRA_THEME_SETTINGS . '[header-builder-pro-items]',
 			'type'     => 'control',
 			'control'  => 'ast-upgrade',
+			'campaign' => 'header-builder',
 			'renderAs' => 'list',
 			'choices'  => array(
 				'one'   => array(
@@ -767,5 +760,5 @@ function astra_header_header_builder_configuration( $configurations = array() ) 
 }
 
 if ( Astra_Builder_Customizer::astra_collect_customizer_builder_data() ) {
-	astra_header_header_builder_configuration();
+	add_action( 'init', 'astra_header_header_builder_configuration', 10, 0 );
 }

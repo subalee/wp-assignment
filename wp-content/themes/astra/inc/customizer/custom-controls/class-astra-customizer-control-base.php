@@ -3,8 +3,6 @@
  * Astra Theme Customizer Configuration Base.
  *
  * @package     Astra
- * @author      Astra
- * @copyright   Copyright (c) 2020, Astra
  * @link        https://wpastra.com/
  * @since       Astra 1.4.3
  */
@@ -25,7 +23,6 @@ if ( ! class_exists( 'Astra_Customizer_Control_Base' ) ) {
 	 * Customizer Sanitizes Initial setup
 	 */
 	class Astra_Customizer_Control_Base {
-
 		/**
 		 * Registered Controls.
 		 *
@@ -49,9 +46,9 @@ if ( ! class_exists( 'Astra_Customizer_Control_Base' ) ) {
 		 */
 		public function enqueue_scripts() {
 
-			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
-			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
-			$file_rtl    = ( is_rtl() ) ? '-rtl' : '';
+			$dir_name    = SCRIPT_DEBUG ? 'unminified' : 'minified';
+			$file_prefix = SCRIPT_DEBUG ? '' : '.min';
+			$file_rtl    = is_rtl() ? '-rtl' : '';
 			$css_uri     = ASTRA_THEME_URI . 'inc/customizer/custom-controls/assets/css/' . $dir_name . '/';
 			$js_uri      = ASTRA_THEME_URI . 'inc/customizer/custom-controls/assets/js/unminified/';
 
@@ -80,7 +77,6 @@ if ( ! class_exists( 'Astra_Customizer_Control_Base' ) ) {
 
 			wp_enqueue_script( 'astra-custom-control-script', ASTRA_THEME_URI . 'inc/customizer/extend-custom-controls/build/index.js', $custom_controls_react_deps, ASTRA_THEME_VERSION, true );
 			wp_set_script_translations( 'astra-custom-control-script', 'astra' );
-
 
 			/**
 			 * Had to go this route because the default context check
